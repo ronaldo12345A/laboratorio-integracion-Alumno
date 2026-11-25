@@ -57,3 +57,11 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Seguridad en producción
+
+* **Entorno Laravel:** `APP_ENV=production` y `APP_DEBUG=false` (aplicar solo al desplegar a producción; mantener `APP_DEBUG=true` durante el desarrollo local)
+* **Orígenes CORS:** Configurar dominios reales explícitos en `config/cors.php` (`allowed_origins`), sin usar comodín `'*'`
+* **URL del API en el cliente:** `VITE_API_URL` apuntando al dominio real con `https://`
+* **Capacitor (`capacitor.config.json`):** Sin bloque `server` ni `cleartext` habilitado en producción
+* **Caducidad de tokens Sanctum:** `expiration` definida en `config/sanctum.php` (`60 * 8` minutos = 8 horas)
